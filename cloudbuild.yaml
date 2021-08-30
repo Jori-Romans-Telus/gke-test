@@ -1,0 +1,6 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args: ['-c', 'docker build --tag=gcr.io/gke-test .']
+    dir: ${_BASE_DIR}
+images: ['gcr.io/gke-test']
