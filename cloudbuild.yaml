@@ -1,5 +1,5 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'bash'
-    args: ['-c', 'docker build --tag=gcr.io/$PROJECT_ID/gke-test .']
-images: ['gcr.io/$PROJECT_ID/gke-test']
+    args: ['-c', 'docker build --t gcr.io/$PROJECT_ID/gke-test:latest .']
+images: ['gcr.io/$PROJECT_ID/gke-test:latest']
