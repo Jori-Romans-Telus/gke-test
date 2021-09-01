@@ -39,3 +39,44 @@ spec:
     resource:
       name: "cpu"
       targetAverageUtilization: 80
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "gke-test-green"
+  namespace: "default"
+  labels:
+    app: "gke-test-green"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "gke-test-green"
+  template:
+    metadata:
+      labels:
+        app: "gke-test-green"
+    spec:
+      containers:
+      - name: "gke-test-green"
+        image: "gcr.io/gke-test-324522/gke-test"
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "gke-test-green-autoscaler"
+  namespace: "default"
+  labels:
+    app: "gke-test-green"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "gke-test-green"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      targetAverageUtilization: 80
