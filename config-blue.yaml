@@ -26,11 +26,11 @@ metadata:
   name: "gke-test-blue-autoscaler"
   namespace: "default"
   labels:
-    app: "gke-test-blue-autoscaler"
+    app: "gke-test-blue"
 spec:
   scaleTargetRef:
     kind: "Deployment"
-    name: "gke-test-blue-autoscaler"
+    name: "gke-test-blue"
     apiVersion: "apps/v1"
   minReplicas: 1
   maxReplicas: 5
